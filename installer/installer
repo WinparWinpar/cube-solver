@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+function test_python(){
+    python3 -V > /dev/null
+    python -V > /dev/null
+}
+
+function test_brew(){
+    brew -v > /dev/null
+}
+
+function test_pip(){
+    echo Installing twophase through pip
+    pip3 install twophase
+}
+
+function install_brew(){
+    echo Installing Homebrew
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+function install_python(){
+    echo Installing python through Homebrew
+    brew install python3
+}
+
+function install_pip(){
+    echo Installing the python installation package (pip) through Homebrew
+    brew install pip3
+}
+
+function install_git(){
+    echo Installing Git through Homebrew
+    brew install git
+}
+
+test_python || install_python
+test_brew || install_brew
+test_pip || export SOLVER=false
+
+if [$SOLVER -eq false]; then
+    install_pip
+    test_pip
+fi
+
+export CUBE_SOLVER=$(pwd)/..
+export HOME=/Users/$USER
+
+python3 -c $(curl -fsSL https://raw.githubusercontent.com/WinparWinpar/cube-solver/main/installer/installer.py) $HOME $CUBE_SOLVER
+alias cube-solver="cd $CUBE_SOLVER; python3 cube-solver.py"
+
+git help || install_git
+git clone https://github.com/WinparWinpar/cube-solver.git -o . > /dev/null
+unzip cube-solver.zip > /dev/null
+rm -f README.md installer/* > /dev/null
+rmdir -f installer > /dev/null
