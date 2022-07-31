@@ -1,6 +1,6 @@
 # cube-solver
 
-The Cube Solver program is a free open source python program that uses the `twophase.solver` library. You can use this program to solve you're Rubik's Cube, get a certain scramble of a scrambled state, or algorithm for a certain pattern.
+The Cube Solver program is a free open source python program for mac that uses the `twophase.solver` library. You can use this program to solve you're Rubik's Cube, get a certain scramble of a scrambled state, or algorithm for a certain pattern.
 
 ## Installation
 
