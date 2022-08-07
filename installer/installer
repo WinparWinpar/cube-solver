@@ -51,6 +51,8 @@ alias cube-solver="cd $CUBE_SOLVER; python3 cube-solver.py"
 
 git help || install_git
 git clone https://github.com/WinparWinpar/cube-solver.git -o . > /dev/null
-unzip cube-solver.zip > /dev/null
+if [ -f cube-solver.zip ]; then
+    unzip cube-solver.zip > /dev/null
+fi
 rm -f README.md installer/* > /dev/null
 rmdir -f installer > /dev/null
